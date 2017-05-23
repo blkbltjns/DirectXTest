@@ -51,7 +51,7 @@ namespace DirectXTest
 
             InitializeDeviceResources();
             InitializeShaders();
-            InitializeTriangles();
+            InitializeSquares();
         }
 
         public void Run()
@@ -64,7 +64,7 @@ namespace DirectXTest
             Draw();
         }
 
-        private Vector3[][] CreateRandomTriangles(int numberOfTriangles)
+        private Vector3[][] CreateRandomSquares(int numberOfTriangles)
         {
 
             Vector3[][] toReturn = new Vector3[numberOfTriangles][];
@@ -182,9 +182,9 @@ namespace DirectXTest
         }
 
 
-        private void InitializeTriangles()
+        private void InitializeSquares()
         {
-            _squares = CreateRandomTriangles(4);
+            _squares = CreateRandomSquares(4);
         }
 
         public void Dispose()

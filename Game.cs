@@ -159,22 +159,20 @@ namespace DirectXTest
             _d3dDeviceContext.OutputMerger.SetRenderTargets(_renderTargetView);
             _d3dDeviceContext.ClearRenderTargetView(_renderTargetView, new SharpDX.Color(32, 103, 178));
 
-            foreach (var square in _squares)
+            for(int squareIndex = 0; squareIndex < _squares.Length; squareIndex++)
             {
+                var square = _squares[squareIndex];
                 for (int vertexIndex = 0; vertexIndex < square.Length; vertexIndex++)
                 {
-                    var vertex = square[vertexIndex];
-                    vertex.X += 0.01f;
+                    square[vertexIndex].X += 0.001f;
                 }
             }
 
-            VertexBufferBinding[] bindings = new VertexBufferBinding[_squares.Count()];
             for (int squareIndex = 0; squareIndex < _squares.Count(); squareIndex++)
             {
                 var square = _squares[squareIndex];
                 var buffer = D3D11.Buffer.Create<Vector3>(_d3dDevice, D3D11.BindFlags.VertexBuffer, square);
                 var bufferBinding = new D3D11.VertexBufferBinding(buffer, Utilities.SizeOf<Vector3>(), 0);
-                bindings[squareIndex] = bufferBinding;
 
                 _d3dDeviceContext.InputAssembler.SetVertexBuffers(0, bufferBinding);
                 _d3dDeviceContext.Draw(4, 0);
